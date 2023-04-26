@@ -1,3 +1,6 @@
+
+*.vsidx
+
 # Prerequisites
 *.d
 
@@ -449,3 +452,5 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+*.vcxproj
+*.filters
