@@ -11,55 +11,45 @@ int func_math(int x, int y, int(*func_ptr)(int, int));
 int main(void) {
 	int x = 100;
 	int y = 200;
-	int* p = &x;
-
-	*p = 120;
+	int* xPtr = &x;
+	*xPtr = 120;
 	x += 300;
+	swap(x, y);  
+	swap1(&x, &y); 
 
-	swap(x, y);    //Will only swap values in x and y locally due to pass by values
-	swap1(&x, &y); //Will actually swap values of orignal x and y
-
-	//int a[5]; Same as in java doing int[] a = new int[5]
 	int a[] = { 1,3,5,7,9 };
-	int* p1 = a; //We can also write this as int* p1 = &(a[0]);
-
+	int* aPtr = a;
+	//Case 1: Regular Display
 	for (int i = 0; i < 5; i++) {
 		printf("a[%d]=%d\t", i, a[i]);
 	}
 	printf("\n");
 
-	//Displaying arr elements using pointer
+	//Case 2: Displaying elements using pointer
 	for (int i = 0; i < 5; i++) {
-		printf("a[%d]=%d\t", i, *p1);
-		p1++;
+		printf("a[%d]=%d\t", i, *aPtr);
+		aPtr++;
 	}
 	printf("\n");
 
-	//In this case, p1 will not be changed itself
-	p1 = a;
+	//Case3: Value of aPtr will not be changed itself unlike Case2
+	aPtr = a;
 	for (int i = 0; i < 5; i++) {
-		printf("a[%d]=%d\t", i, *(p1+i));
+		printf("a[%d]=%d\t", i, *(aPtr+i));
 	}
 	printf("\n");
 
+	//Generic Pointers
 	float z = 99.90;
-	void* p2; //No data type asserted to this pointer, Generic Pointer
-	p2 = &z;
-	printf("z=%f\n",*(float*)p2);
-
+	void* zPtr = &z;
+	printf("z=%f\n",*(float*)zPtr);
 	int w = 300;
-	p2 = &w; //Since p2 is generic pointer, we can store multiple types of data in it, not limited to one.
-	printf("z=%d\n", *(int*)p2);
+	zPtr = &w; 
+	printf("w=%d\n", *(int*)zPtr);
 
-	int(*func_ptr)(int, int);
-	func_ptr = add;
-	int result = func_ptr(x, y);
-	func_ptr = sub;
-	result = func_ptr(x, y);
-
-	int result1 = func_math(x, y, add);
-	result1 = func_math(x, y, sub);
-
+	//Function Pointers
+	int result = func_math(x, y, add);
+	result = func_math(x, y, sub);
 
 	return 0;
 }
@@ -69,8 +59,6 @@ int func_math(int x, int y, int(*func_ptr)(int, int)) {
 	return func_ptr(x, y);
 }
 
-
-
 int add(int x, int y) {
 	return x + y;
 }
@@ -79,12 +67,14 @@ int sub(int x, int y) {
 	return x - y;
 }
 
+//Will only swap values in x and y locally due to pass by values
 void swap(int x, int y) {
 	int t = x;
 	x = y;
 	y = t;
 }
 
+//Will actually swap values of orignal x and y since we are passing pointers of x and y into function
 void swap1(int* x, int* y) {
 	int t = *x;
 	*x = *y;
