@@ -15,47 +15,56 @@ struct Node* addNode(struct Node* list, int value) {
 	if (list == NULL) {
 		return node;
 	}
-	//Case 2: 
+	//Case 2: New Node will become "Head node"(list)
 	else if (value < list->key) {
 		node->next = list;
 		return node;
 	}
 
-	//Case 3:
-	struct Node* ptr = NULL;
-	while (ptr->next != NULL) {
-		struct Node* ptr1 = ptr->next;
-		if (ptr->key < value) {
-			ptr = ptr1;
-		}
-		else {
-			node->next = ptr1;
-			ptr->next = node;
+	//Case 3: Search rest of list to find where to insert new node
+	struct Node* currNode = list;
+	while (currNode->next != NULL) {
+		struct Node* nextNode = currNode->next;
+		if (nextNode->key > value) {
+			node->next = nextNode;
+			currNode->next = node;
 			return list;
 		}
+		else {
+			currNode = nextNode;
+		}
 	}
-	ptr->next = node;
+	currNode->next = node;
 	return list;
 }
 
 struct Node* deleteNode(struct Node* list, int value) {
+	//Case 1: Empty list
 	if (list == NULL) {
-		return list;
+		return NULL;
 	}
+	//Case 2: Head node(list) == value to be deleted
+	else if (list->key == value) {
+		struct Node* tempNode = list;
+		list = list->next;
+		free(tempNode);
+	}
+
+	//Case 3: List is not empty and head node is != value to be deleted. Search rest of list
 	struct Node* currNode = list;
-	struct Node* previousNode = NULL;
+	struct Node* previousNode = list;
 	while (currNode != NULL) {
 		if (currNode->key == value) {
-			if (currNode->next == NULL) {
-				previousNode->next = NULL;
-			}
-			else {
-				currNode = currNode->next;
-			}
+			previousNode->next = currNode->next;
+			free(currNode);
+			currNode = previousNode->next;
+		}
+		else {
+			previousNode = currNode;
+			currNode = currNode->next;
 		}
 	}
 	return list;
-
 }
 
 bool findKey(struct Node* list, int value) {
@@ -69,22 +78,24 @@ bool findKey(struct Node* list, int value) {
 	return false;
 }
 
-void display(struct Node* list) {
+void displayList(struct Node* list) {
 	struct Node* currNode = list;
+	printf("[");
 	while (currNode != NULL) {
-		printf("%d\n", currNode->key);
+		printf("%d, ", currNode->key);
 		currNode = currNode->next;
 	}
+	printf("]\n");
 }
 
 void deleteList(struct Node* list) {
 	struct Node* currNode = list;
 	struct Node* nextNode = NULL;
-		while (currNode->next != NULL) {
-			nextNode = currNode->next;
-			free(currNode);
-			currNode = nextNode;
-		}
+	while (currNode->next != NULL) {
+		nextNode = currNode->next;
 		free(currNode);
+		currNode = nextNode;
+	}
+	free(currNode);
 }
 
