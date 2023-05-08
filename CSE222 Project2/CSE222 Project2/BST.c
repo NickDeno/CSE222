@@ -10,30 +10,35 @@ struct Node* createNode(int value) {
 }
 
 struct Node* insertNode(struct Node* node, int value) {
-	//Base Case for recursive call
-	if (node == NULL) return createNode(value);
-
-	//Case 1: 
-	if (value < node->key) {
+	//Case 1: Tree is empty or we reached null leaf node of tree => Node to insert is inserted here
+	if (node == NULL) {
+		return createNode(value);
+	}
+	//Case 2: Node to insert < current node => traverse to left child of current node
+	else if (value < node->key) {
 		node->leftChild = insertNode(node->leftChild, value);
 	}
-
-	//Case 2:
-	if (value > node->key) {
+	//Case 3: Node to insert >= current node => traverse to right child of current node
+	else {
 		node->rightChild = insertNode(node->rightChild, value);
 	}
 	return node;
 }
 
 bool findNode(struct Node* node, int value) {
-	if(node == NULL) return false;
-	
-	if (value == node->key) {
+	//Case 1: Tree is empty or we reached null leaf node => node was not found, return false
+	if (node == NULL) {
+		return false;
+	}
+	//Case 2: Node being searched for = current node => node was found, return true;
+	else if (value == node->key) {
 		return true;
 	}
+	//Case 3: Node being searched for < current node, => traverse to left child of current node
 	else if (value < node->key) {
 		return findNode(node->leftChild, value);
 	}
+	//Case 3: Node being searched for > current node, => traverse to right child of current node
 	else {
 		return findNode(node->rightChild, value);
 	}
@@ -118,7 +123,7 @@ void postOrderTraversal(struct Node* node) {
 	printf("%d, ", node->key);
 }
 
-//Visits nodes in postOrder logic and "deletes" each node using free
+//Visits nodes in postOrder logic and "deletes" each node using free function
 void deleteTree(struct Node* node) {
 	//Base case for recursive call
 	if (node == NULL) {

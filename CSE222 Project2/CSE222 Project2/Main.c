@@ -5,23 +5,23 @@
 int main(void) {
     //Inserting into Tree
 	struct Node* root = NULL;
-    root = insertNode(root, 50);
-    root = insertNode(root, 30);
-    root = insertNode(root, 20);
-    root = insertNode(root, 40);
-    root = insertNode(root, 70);
-    root = insertNode(root, 60);
-    root = insertNode(root, 80);
-    root = insertNode(root, 75);
+    root = insertNode(root, 5);
+    root = insertNode(root, 3);
+    root = insertNode(root, 2);
+    root = insertNode(root, 4);
+    root = insertNode(root, 7);
+    root = insertNode(root, 6);
+    root = insertNode(root, 8);
 
     //Searching Tree
-    int key = 8;
-    int key1 = 20;
+    int key = 7;
     printf("A node with the value %d %s in the tree\n", key, findNode(root, key) ? "was found" : "was not found");
-    printf("A node with the value %d %s in the tree\n", key1, findNode(root, key1) ? "was found" : "was not found");
 
     //Deleting Node in Tree
-    root = deleteNode(root, 70);
+    root = deleteNode(root, 7);
+
+    //Searching Tree for Deleted Node
+    printf("A node with the value %d %s in the tree\n", key, findNode(root, key) ? "was found" : "was not found");
 
     //Traversing Tree
     printf("inOrder traversal: ");
