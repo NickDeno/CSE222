@@ -14,4 +14,4 @@ extern struct Node* deleteNode(struct Node* node, int value);
 extern void inOrderTraversal(struct Node* node);
 extern void preOrderTraversal(struct Node* node);
 extern void postOrderTraversal(struct Node* node);
-extern void deleteTree(struct Node** node);
+extern void deleteTree(struct Node** pNode);
