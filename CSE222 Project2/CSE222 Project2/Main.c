@@ -35,9 +35,12 @@ int main(void) {
 
     //Deleting Entire Tree
     deleteTree(&root);
-    inOrderTraversal(root);
+    //Allows us to check if root node was actually updated to NULL after deleting tree
     if (root == NULL) {
         printf("\nBinary Tree was sucessfully deleted");
+    }
+    else {
+        inOrderTraversal(root);
     }
 
 	return 0;
