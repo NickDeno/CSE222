@@ -18,17 +18,15 @@ int main(void) {
 	//Same as doing MyClass cls = new MyClass() in Java
 	MyClass cls;
 
+	//Demonstrates that if we pass class object to function, and do not use a reference, the function
+	//will create a new instance of this object and copy data from old to new.
 	demoFunc(cls);
 
 	//Same as doing MyClass cls; in Java => pointer
 	MyClass* pCls = nullptr;
 
-	//If we wrote code this way, there would be memory leak since first object created
-	//wouldnt be deleted
-	//pCls = new MyClass(10, 20);
-	//pCls = new MyClass(30, 60);
-
-	//Instead we write code this way
+	//This is how we properly reassign a pointer to a class object. We must first delete the old class object
+	//before assigning pointer to new one. This prevents memory leaks
 	pCls = new MyClass(10, 20, 30);
 	delete pCls;
 	pCls = new MyClass(30, 60, 90);

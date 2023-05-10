@@ -34,7 +34,11 @@ int main(void) {
     postOrderTraversal(root);
 
     //Deleting Entire Tree
-    deleteTree(root);
+    deleteTree(&root);
+    inOrderTraversal(root);
+    if (root == NULL) {
+        printf("\nBinary Tree was sucessfully deleted");
+    }
 
 	return 0;
 }

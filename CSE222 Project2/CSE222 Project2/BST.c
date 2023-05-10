@@ -10,7 +10,7 @@ struct Node* createNode(int value) {
 }
 
 struct Node* insertNode(struct Node* node, int value) {
-	//Case 1: Tree is empty or we reached null leaf node of tree => Node to insert is inserted here
+	//Case 1: Tree is empty or we reached null leaf node of tree => Node is created and inserted here
 	if (node == NULL) {
 		return createNode(value);
 	}
@@ -123,13 +123,17 @@ void postOrderTraversal(struct Node* node) {
 	printf("%d, ", node->key);
 }
 
-//Visits nodes in postOrder logic and "deletes" each node using free function
-void deleteTree(struct Node* node) {
+//Double pointer of original root node is needed so we can actually modify the original pointer to NULL after freeing all the nodes.
+//If we only used a single pointer, the original pointer outside the function would still point to the memory that has been freed, 
+//causing issues like accessing invalid memory
+void deleteTree(struct Node** pNode) {
 	//Base case for recursive call
+	struct Node* node = *pNode;
 	if (node == NULL) {
 		return;
 	}
-	deleteTree(node->leftChild);
-	deleteTree(node->rightChild);
+	deleteTree(&node->leftChild);
+	deleteTree(&node->rightChild);
 	free(node);
+	*pNode = NULL;
 }
