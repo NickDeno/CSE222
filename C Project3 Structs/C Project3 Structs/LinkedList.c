@@ -88,14 +88,14 @@ void displayList(struct Node* list) {
 	printf("]\n");
 }
 
-void deleteList(struct Node* list) {
-	struct Node* currNode = list;
-	struct Node* nextNode = NULL;
-	while (currNode->next != NULL) {
-		nextNode = currNode->next;
-		free(currNode);
-		currNode = nextNode;
+void deleteList(struct Node** pList) {
+	struct Node* ptr = *pList;
+	while (ptr->next != NULL) {
+		struct Node* ptr1 = ptr->next;
+		free(ptr);
+		ptr = ptr1;
 	}
-	free(currNode);
+	free(ptr);
+	*pList = NULL;
 }
 

@@ -10,9 +10,13 @@ int main(void) {
 	list = addNode(list, 4);
 	list = addNode(list, 4);
 	list = addNode(list, 9);
+
 	displayList(list);
 	list = deleteNode(list, 2);
 	list = deleteNode(list, 4);
+	displayList(list);
+
+	deleteList(&list);
 	displayList(list);
 
 }
