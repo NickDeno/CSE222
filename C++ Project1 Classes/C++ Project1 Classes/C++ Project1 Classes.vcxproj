@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{09d933a5-9e75-4b00-ad57-ab6c5e695654}</ProjectGuid>
-    <RootNamespace>CProject</RootNamespace>
+    <ProjectGuid>{31cd359f-41f9-4e88-be17-c611ad17cea9}</ProjectGuid>
+    <RootNamespace>CProject1Classes</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -130,7 +130,7 @@
     <ClInclude Include="MyClass.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Mainc.cpp" />
+    <ClCompile Include="Main.cpp" />
     <ClCompile Include="MyClass.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

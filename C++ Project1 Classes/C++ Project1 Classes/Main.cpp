@@ -1,7 +1,7 @@
 #include <iostream>
 #include "MyClass.h"
 
-void swap1(int *x, int *y);
+void swap1(int* x, int* y);
 void swap2(int& x, int& y);
 void demoFunc(MyClass cls);
 
@@ -17,7 +17,7 @@ int main(void) {
 
 	//Same as doing MyClass cls = new MyClass() in Java
 	MyClass cls;
-	
+
 	demoFunc(cls);
 
 	//Same as doing MyClass cls; in Java => pointer
@@ -41,7 +41,7 @@ void demoFunc(MyClass cls) {
 }
 
 //Pointer in C++ example. Swaps values using pointers, and actually changes original values of x and y
-void swap1(int *x, int *y) {
+void swap1(int* x, int* y) {
 	int temp = *x;
 	*x = *y;
 	*y = temp;
