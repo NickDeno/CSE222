@@ -7,6 +7,7 @@ struct Node* createNode(int value) {
 	node->key = value;
 	node->leftChild = NULL;
 	node->rightChild = NULL;
+	return node;
 }
 
 struct Node* insertNode(struct Node* node, int value) {
